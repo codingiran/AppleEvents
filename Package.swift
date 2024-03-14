@@ -18,7 +18,8 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "AppleEvents",
-            dependencies: ["AppleEventsC"]
+            dependencies: ["AppleEventsC"],
+            resources: [.copy("Resources/PrivacyInfo.xcprivacy")]
         ),
         .target(
             name: "AppleEventsC",
