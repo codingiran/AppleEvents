@@ -1,16 +1,20 @@
-import AppleEventsC
 import CoreServices
 import Foundation
-
-// Enforce minimum Swift version for all platforms and build systems.
-#if swift(<5.5)
-#error("AppleExtension doesn't support Swift versions below 5.5.")
+#if compiler(>=6.0)
+private import AppleEventsC
+#else
+@_implementationOnly import AppleEventsC
 #endif
 
-/// Current AppleEvents version 0.0.2. Necessary since SPM doesn't use dynamic libraries. Plus this will be more accurate.
-let version = "0.0.2"
+// Enforce minimum Swift version for all platforms and build systems.
+#if swift(<5.9)
+#error("AppleEvents doesn't support Swift versions below 5.59.")
+#endif
 
-public enum AppleEvent {
+/// Current AppleEvents version 0.0.3. Necessary since SPM doesn't use dynamic libraries. Plus this will be more accurate.
+let version = "0.0.3"
+
+public enum AppleEvent: Sendable {
     case restart
     case shutDown
     case logOut

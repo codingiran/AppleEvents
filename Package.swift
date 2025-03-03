@@ -1,4 +1,4 @@
-// swift-tools-version: 5.8
+// swift-tools-version: 5.9
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -19,7 +19,10 @@ let package = Package(
         .target(
             name: "AppleEvents",
             dependencies: ["AppleEventsC"],
-            resources: [.copy("Resources/PrivacyInfo.xcprivacy")]
+            resources: [.copy("Resources/PrivacyInfo.xcprivacy")],
+            linkerSettings: [
+                .linkedFramework("CoreServices"),
+            ]
         ),
         .target(
             name: "AppleEventsC",
